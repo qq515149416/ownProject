@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>羁绊者</title>
+    <meta name="description" content="这个是一个带有云盘功能的论坛" />
+    <meta name="keywords" content="云盘,blog,博客,论坛">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/jquery.Jcrop.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.5/styles/monokai_sublime.min.css">
+    <link href="//cdn.bootcss.com/magnific-popup.js/1.0.0/magnific-popup.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/dist/css/screen.css" />
+    <script type="text/javascript" src="/dist/js/ghost-url.min.js"></script>
+    <script type="text/javascript">
+        ghost.init({
+            clientId: "ghost-frontend",
+            clientSecret: "721352203d6a"
+        });
+    </script>
+    <meta name="generator" content="Blog 0.1" />
+    <link rel="stylesheet" type="text/css" href="/css/com.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+</head>
+<body class="home-template">
+<%- include('header') -%>
+<!-- start site's main content area -->
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+
+            <main class="col-md-8 main-content">
+                <% for(var i=0;i<lAmessage.length;i++) { %>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="/images/timg.jpg" alt="...">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><%= lAmessage[i].sender %></h4>
+                            <%= lAmessage[i].content %>
+                        </div>
+                    </div>
+                <% } %>
+                <!--<nav class="pagination" role="navigation">-->
+                <!--<span class="page-number">第 1 页 &frasl; 共 8 页</span>-->
+                <!--<a class="older-posts" href="/page/2/"><i class="fa fa-angle-right"></i></a>-->
+                <!--</nav>-->
+
+
+            </main>
+
+            <aside class="col-md-4 sidebar">
+                <!-- start widget -->
+                <!-- end widget -->
+
+                <!-- start tag cloud widget -->
+                <div class="widget">
+                    <h4 class="title">用户信息</h4>
+                    <div class="content community">
+                        <p>用户名：<%= username %></p>
+                        <p>昵称:<%= nickname %></p>
+                        <p>个人说明:<%= description %></p>
+                        <% if(login) { %>
+                        <p>可用空间:<%= (availableSpace/1000/1000).toFixed(2) %>M</p>
+                        <a href="/u/exit">退出登录</a>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- end tag cloud widget -->
+
+                <!-- start widget -->
+                <!-- start tag cloud widget -->
+                <div class="widget">
+                    <h4 class="title">好友列表</h4>
+                    <div class="content tag-cloud">
+                        <ul class="list-group">
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- end tag cloud widget -->
+
+                <!-- start widget -->
+                <!-- end widget -->
+
+                <!-- start widget -->
+                <!-- end widget -->                </aside>
+
+        </div>
+    </div>
+</section>
+<%- include('footer') -%>
+<script type="text/template" id="template">
+    <div class="comment"><span class="username">{{= username}}:</span>{{= content}}</div>
+</script>
+<script id="template_date" type="text/html">
+    {{= dateFormat(time, 'yyyy年MM月dd日 hh:mm:ss') }}
+</script>
+<script type="text/template" id="friends">
+    {{ for(var i=0;i<items.length;i++) { }}
+    <li class="list-group-item" title="{{= items[i].username }}" data-username="{{= items[i].username }}"><img src="/images/{{= items[i].headIcon }}" height="30px"/>&nbsp;&nbsp;{{= items[i].nickname }}</li>
+    {{ } }}
+</script>
+<script>
+    $(function(){
+        $('.post-content img').each(function(item){
+            var src = $(this).attr('src');
+
+            $(this).wrap('<a href="' + src + '" class="mfp-zoom" style="display:block;"></a>');
+        });
+
+        /*$('.post-content').magnificPopup({
+         delegate: 'a',
+         type: 'image'
+         });*/
+    });
+</script>
+<script src="/js/com.js"></script>
+<script>
+    $(function(){
+        header();
+        $(".date").html(template("template_date",{time:$(".date").attr("data-time")}));
+        $(".post-date").html(template("template_date",{time:$(".post-date").attr("title")}));
+        var iUsername=$(".community p").eq(0).html().split("：")[1];
+        var friendsArr=[];
+        $.get("/u/userInfo?username="+iUsername,function(iResult) {
+            for(var i=0;i<iResult.friends.length;i++) {
+                $.get("/u/userInfo?username="+iResult.friends[i],function(result) {
+                    friendsArr.push(result);
+                    if(iResult.friends.length==friendsArr.length) {
+                        $(".tag-cloud").children("ul").html(template("friends",{items: friendsArr}));
+                    }
+                });
+            }
+        });
+        $(".list-group").on("click","li",function() {
+            console.log($(this).attr("data-username"));
+            location.href="/"+$(this).attr("data-username");
+        });
+        $.get("/u/userInfo?username="+$(".media-heading").html(),function(result) {
+            $(".media-object").attr("src","/images/"+result.headIcon);
+        });
+    });
+</script>
+
+</body>
+</html>

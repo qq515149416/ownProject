@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>羁绊者</title>
+    <meta name="description" content="Ghost 是一套基于 Node.js 构建的开源博客平台（Open source blogging platform），具有易用的书写界面和体验，博客内容默认采用 Markdown 语法书写，目标是取代臃肿的 Wordpress。" />
+    <meta name="keywords" content="Ghost,blog,Ghost中国,Ghost博客,Ghost中文,Ghost中文文档">
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/jquery.Jcrop.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.5/styles/monokai_sublime.min.css">
+    <link href="//cdn.bootcss.com/magnific-popup.js/1.0.0/magnific-popup.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/dist/css/screen.css" />
+
+    <link rel="canonical" href="http://www.ghostchina.com/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="http://www.ghostchina.com/page/2/" />
+    <script type="text/javascript" src="/dist/js/ghost-url.min.js"></script>
+    <script type="text/javascript">
+        ghost.init({
+            clientId: "ghost-frontend",
+            clientSecret: "721352203d6a"
+        });
+    </script>
+    <meta name="generator" content="Ghost 0.7" />
+    <link rel="alternate" type="application/rss+xml" title="Ghost 开源博客平台" href="http://www.ghostchina.com/rss/" />
+    <link rel="stylesheet" type="text/css" href="/css/com.css" />
+    <style type="text/css">
+    </style>
+</head>
+<body class="home-template">
+<%- include('header') -%>
+<!-- start site's main content area -->
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+
+            <main class="col-md-12 main-content">
+                <div class="row">
+                    <% for(var i=0;i<userlist.length;i++) { %>
+                    <div class="col-md-4">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="/images/<%= userlist[i].headIcon %>" alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><%= userlist[i].nickname %></h4>
+                                <%= userlist[i].description %>
+                                <p>
+                                    <a href="#" class="btn btn-primary addFriends" data-friends="<%= userlist[i].username %>" role="button">加为好友</a>
+                                    <a href="/<%= userlist[i].username %>" class="btn btn-warning share" role="button">详细信息</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </main>
+
+
+
+        </div>
+    </div>
+</section>
+<%- include('footer') -%>
+<script type="text/template" id="template">
+    <div class="comment"><span class="username">{{= username}}:</span>{{= content}}</div>
+</script>
+<script id="template_date" type="text/html">
+    {{= dateFormat(time, 'yyyy年MM月dd日 hh:mm:ss') }}
+</script>
+<script>
+    $(function(){
+        $('.post-content img').each(function(item){
+            var src = $(this).attr('src');
+
+            $(this).wrap('<a href="' + src + '" class="mfp-zoom" style="display:block;"></a>');
+        });
+
+        /*$('.post-content').magnificPopup({
+         delegate: 'a',
+         type: 'image'
+         });*/
+    });
+</script>
+<script src="/js/com.js"></script>
+<script>
+    $(function(){
+        header();
+        $(".date").html(template("template_date",{time:$(".date").attr("data-time")}));
+        $(".post-date").html(template("template_date",{time:$(".post-date").attr("title")}));
+        $.get("/u/userInfo?username="+$(".branding").attr("title"),function(result) {
+            console.log(result);
+            $(".addFriends").each(function(i,item) {
+                for(var j=0;j<result.friends.length;j++) {
+                    if($(this).attr("data-friends")==result.friends[j]) {
+                        $(this).attr("disabled","disabled");
+                        $(this).html("已添加");
+                    }
+                }
+            });
+        });
+        $(".addFriends").click(function() {
+            var self = this;
+            if(!$(this).attr("disabled")) {
+                $.get("/u/addFriends?username="+$(this).attr("data-friends"),function(result) {
+                    if(result=="1") {
+                        $(self).attr("disabled","disabled");
+                        $(self).html("已添加");
+                    }
+                })
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

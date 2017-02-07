@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>羁绊者</title>
+    <meta name="description" content="这个是一个带有云盘功能的论坛" />
+    <meta name="keywords" content="云盘,blog,博客,论坛">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/jquery.Jcrop.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.5/styles/monokai_sublime.min.css">
+    <link href="//cdn.bootcss.com/magnific-popup.js/1.0.0/magnific-popup.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/dist/css/screen.css" />
+    <script type="text/javascript" src="/dist/js/ghost-url.min.js"></script>
+    <script type="text/javascript">
+        ghost.init({
+            clientId: "ghost-frontend",
+            clientSecret: "721352203d6a"
+        });
+    </script>
+    <meta name="generator" content="Blog 0.7" />
+    <link rel="stylesheet" type="text/css" href="/css/com.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+</head>
+<body class="home-template">
+<%- include('header') -%>
+<!-- start site's main content area -->
+<section class="content-wrap">
+<div class="container">
+<div class="row">
+
+<main class="col-md-8 main-content">
+<% for(var i=0;i<content.length;i++) { %>
+<article id="<%= content[i]._id %>" class="post">
+    <div class="post-head">
+        <h1 class="post-title"><a href="/<%= content[i].username %>?title=<%= content[i].title %>"><%= content[i].title %></a></h1>
+        <div class="post-meta">
+            <span class="author" data-username="<%= content[i].username %>">作者：<a href="/<%= content[i].username %>"><%= content[i].nickname %></a></span> &bull;
+            <time class="post-date" datetime="<%= content[i].date %>" title="<%= content[i].date %>">加载中...</time>
+        </div>
+    </div>
+    <div class="post-content">
+        <p><%- content[i].content %></p>
+    </div>
+    <!--<div class="post-permalink">-->
+        <!--<a href="/moving-to-node-js-v4-lts/" class="btn btn-default">阅读全文</a>-->
+    <!--</div>-->
+
+    <footer class="post-footer clearfix">
+        <div class="tag-list">
+            <% for(var j=0;j<content[i].comment.length;j++) { %>
+                <div class="comment"><span class="username"><%= content[i].comment[j].username %>:</span><%= content[i].comment[j].content%></div>
+            <% } %>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="评论内容" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="comment_<%= content[i]._id %>">发送</span>
+            </div>
+        </div>
+        <div class="pull-right share">
+        </div>
+    </footer>
+</article>
+<% } %>
+
+<!--<nav class="pagination" role="navigation">-->
+    <!--<span class="page-number">第 1 页 &frasl; 共 8 页</span>-->
+    <!--<a class="older-posts" href="/page/2/"><i class="fa fa-angle-right"></i></a>-->
+<!--</nav>-->
+
+
+</main>
+
+    <%- include('aside') -%>
+
+</div>
+</div>
+</section>
+<%- include('footer') -%>
+<script type="text/template" id="template">
+    <div class="comment"><span class="username">{{= username}}:</span>{{= content}}</div>
+</script>
+<script id="template_date" type="text/html">
+    {{= dateFormat(time, 'yyyy年MM月dd日 hh:mm:ss') }}
+</script>
+<script type="text/template" id="friends">
+    {{ for(var i=0;i<items.length;i++) { }}
+        <li class="list-group-item" title="{{= items[i].username }}" data-username="{{= items[i].username }}"><img src="/images/{{= items[i].headIcon }}" height="30px"/>&nbsp;&nbsp;{{= items[i].nickname }}</li>
+    {{ } }}
+</script>
+<script type="text/template" id="imgArr">
+    <div class="row">
+        {{ for(var i=0;i<items.length;i++) { }}
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail" data-imgfilename="{{= items[i] }}">
+                    <img src="/images/u{{= items[i] }}" alt="...">
+                </a>
+            </div>
+        {{ } }}
+    </div>
+</script>
+<script type="text/template" id="main">
+    {{ for(var i=0;i<content.length;i++) { }}
+    <article id="{{= content[i]._id }}" class="post">
+        <div class="post-head">
+            <h1 class="post-title"><a href="/{{= content[i].username }}?title={{= content[i].title }}">{{= content[i].title }}</a></h1>
+            <div class="post-meta">
+                <span class="author" data-username="{{= content[i].username }}">作者：<a href="/{{= content[i].username }}">{{= content[i].nickname }}</a></span> &bull;
+                <time class="post-date" datetime="{{= content[i].date }}" title="{{= content[i].date }}">加载中...</time>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>{{=# content[i].content }}</p>
+        </div>
+        <!--<div class="post-permalink">-->
+        <!--<a href="/moving-to-node-js-v4-lts/" class="btn btn-default">阅读全文</a>-->
+        <!--</div>-->
+
+        <footer class="post-footer clearfix">
+            <div class="tag-list">
+                {{ for(var j=0;j<content[i].comment.length;j++) { }}
+                <div class="comment"><span class="username">{{= content[i].comment[j].username }}:</span>{{= content[i].comment[j].content}}</div>
+                {{ } }}
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="评论内容" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="comment_{{= content[i]._id }}">发送</span>
+                </div>
+            </div>
+            <div class="pull-right share">
+            </div>
+        </footer>
+    </article>
+    {{ } }}
+</script>
+<script>
+    $(function(){
+        $('.post-content img').each(function(item){
+            var src = $(this).attr('src');
+
+            $(this).wrap('<a href="' + src + '" class="mfp-zoom" style="display:block;"></a>');
+        });
+
+        /*$('.post-content').magnificPopup({
+         delegate: 'a',
+         type: 'image'
+         });*/
+    });
+</script>
+<script src="/js/com.js"></script>
+<script>
+    $(function(){
+        header();
+        $(".date").html(template("template_date",{time:$(".date").attr("data-time")}));
+        $(".post-date").html(template("template_date",{time:$(".post-date").attr("title")}));
+        var selectsImg =[];
+        $("#tupan").click(function() {
+            $.get("/u/allFiles",function(result) {
+                $("#tupanSelect").find(".modal-body").html(template("imgArr",{items: result}));
+            });
+        });
+        $("#tupanSelect").find(".modal-body").on("click","a",function() {
+            if($(this).data("flag")) {
+                $(this).css({"border-color": "#ddd"});
+                for(var i=0;i<selectsImg.length;i++) {
+                    if(selectsImg[i]==$(this).attr("data-imgfilename")) {
+                        selectsImg.splice(i,1);
+                    }
+                }
+                $(this).data("flag",false);
+                return ;
+            }
+            selectsImg.push($(this).attr("data-imgfilename"));
+            $(this).css({"border-color": "#337ab7"});
+            $(this).data("flag",true);
+        });
+        $("#selectImg").click(function() {
+            var content = $("#fateTextarea").val();
+            for(var i=0;i<selectsImg.length;i++) {
+                content+="<img src='/u/fileImg/"+selectsImg[i]+"?username="+$(".author").attr('data-username')+"'>";
+            }
+            $("#fateTextarea").val(content);
+            selectsImg=[];
+            $(this).prev().trigger("click");
+        });
+        $(".classification a").click(function() {
+            $.get("/u/allTiezi?tag="+$(this).html(),function(result) {
+                $("main").html(template("main",{content: result}))
+                $(".date").html(template("template_date",{time:$(".date").attr("data-time")}));
+                $(".post-date").html(template("template_date",{time:$(".post-date").attr("title")}));
+            });
+        });
+        var iUsername=$(".community p").eq(0).html().split("：")[1];
+        var friendsArr=[];
+        $.get("/u/userInfo?username="+iUsername,function(iResult) {
+            for(var i=0;i<iResult.friends.length;i++) {
+                $.get("/u/userInfo?username="+iResult.friends[i],function(result) {
+                    friendsArr.push(result);
+                    if(iResult.friends.length==friendsArr.length) {
+                        $(".tag-cloud").children("ul").html(template("friends",{items: friendsArr}));
+                    }
+                });
+            }
+        });
+        $(".list-group").on("click","li",function() {
+            console.log($(this).attr("data-username"));
+            location.href="/"+$(this).attr("data-username");
+        });
+        $(".input-group-addon").click(function() {
+            var self=this;
+            var id=$(this).attr("id").split("_")[1];
+            var content=$(this).prev().val();
+            if(content.trim()=="") {
+                alert("内容不能为空");
+                return ;
+            }
+            $.post("/doComment",{"id":id,"content":content},function(result) {
+                if(result.code=="1") {
+                    $(self).parent().parent().prepend(template("template",result.object));
+                    $(self).prev().val("");
+                }
+            })
+        });
+        $("#send").click(function() {
+            var self=this;
+            var content=$("#fateTextarea").val();
+            var title=$("#exampleInputTitle1").val();
+            var keyword=$("#exampleInputTag").val();
+            var reg=/^[\u2E80-\u9FFF]+|\w+$/;
+            if(keyword.trim()=="") {
+                keyword=="默认分类";
+            }
+            if(!reg.test(keyword)) {
+                alert("标签只能是英文中文和下划线");
+                return ;
+            }
+            $.post("/doFatie",{"content":content,"title":title,"keyword":keyword},function(result) {
+                if(result=="1") {
+                    $(self).prev().trigger("click");
+                    $("#fateTextarea").val("");
+                    $("#exampleInputTitle1").val("");
+                    location.href="/";
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

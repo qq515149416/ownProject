@@ -1,0 +1,206 @@
+<!-- start header -->
+<header class="main-header"  style="background-image: url(http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg)"">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <%if(login) {%>
+            <!-- start logo -->
+            <a class="branding" href="#" title="<%= username %>">
+                <img src="/images/<%= headIcon %>" alt="Ghost 开源博客平台">
+                <div class="mask hidden-xs hidden-sm" data-toggle="modal" data-target="#htx">更换头像</div>
+            </a>
+            <div class="modal fade bs-example-modal-lg" id="htx" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">更换头像</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleInputFile">选择头像图片</label>
+                                <input type="file" id="exampleInputFile">
+                            </div>
+                            <div id="clipArea"></div>
+                            <div id="view"></div>
+                            <img src="/images/sago.jpg" id="target" alt="[Jcrop Example]" />
+
+                            <div id="preview-pane">
+                                <div class="preview-container">
+                                    <img src="/images/sago.jpg" class="jcrop-preview" alt="Preview" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" id="close" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary hidden-xs hidden-sm" id="ok">确认更换</button>
+                            <button type="button" class="btn btn-primary hidden-md hidden-lg" id="clipBtn">确认更换</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end logo -->
+            <%}else{%>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">登陆</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModa2">注册</button>
+            <h2 class="text-hide">Ghost 是一个简洁、强大的写作平台。你只须专注于用文字表达你的想法就好，其余的事情就让 Ghost 来帮你处理吧。</h2>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">用户登录</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">用户名</label>
+                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="你的用户名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">密码</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="你的密码">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="login">登录</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">用户注册</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">用户名</label>
+                                    <input type="text" class="form-control" id="exampleInputUsername2" placeholder="你的用户名">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">密码</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="你的密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputNickname1">昵称</label>
+                                    <input type="text" class="form-control" id="exampleInputNickname1" placeholder="你的昵称">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputDescription1" class="customize">个人说明</label>
+                                    <textarea name="description" id="exampleInputDescription1" cols="75" rows="10"></textarea>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="agree"> 我同意该网站的所有条款
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" id="registered">注册</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <img src="http://static.ghostchina.com/image/6/d1/fcb3879e14429d75833a461572e64.jpg" alt="Ghost 博客系统" class="hide">
+        </div>
+    </div>
+</div>
+</header>
+<!-- end header -->
+<nav class="yidong hidden-lg hidden-md" data-toggle="modal" data-target="#myNav">
+    <span class="glyphicon glyphicon-align-justify"></span>
+</nav>
+<div class="yidong hidden-lg hidden-md userInfo">
+    <span class="glyphicon glyphicon-user"></span>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myNav" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">导航</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <% if(login) { %>
+                        <div class="navItem" data-href="/">
+                            首页
+                        </div>
+                        <div class="navItem" data-href="/<%= username %>">
+                            我的说说
+                        </div>
+                        <div class="navItem" data-href="/u/userList">
+                            用户列表
+                        </div>
+                        <div class="navItem" data-href="/u/cloudDisk">
+                            个人云盘
+                        </div>
+                        <div class="navItem" data-href="/u/shareResources">
+                            分享资源
+                        </div>
+                        <div class="navItem" data-href="/u/lAmessage">
+                            留言信息
+                        </div>
+                        <% }else{ %>
+                        <div class="navItem" data-href="/">
+                            首页
+                        </div>
+                        <div class="navItem" data-href="/u/userList">
+                            用户列表
+                        </div>
+                        <div class="navItem" data-href="/u/shareResources">
+                            分享资源
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="gotoURL">跳转</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- start navigation -->
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header">
+                        <span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars"></i>
+                        </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        <% if(login) { %>
+                        <li class=<% if(ative=="/") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/">首页</a></li>
+                        <li class=<% if(ative=="myHome") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/<%= username %>">我的说说</a></li>
+                        <li class=<% if(ative=="userList") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/u/userList">用户列表</a></li>
+                        <li class=<% if(ative=="myYunpan") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/u/cloudDisk">个人云盘</a></li>
+                        <li class=<% if(ative=="yunpanFx") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/u/shareResources">分享资源</a></li>
+                        <li class=<% if(ative=="liuyan") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/u/lAmessage">留言信息</a></li>
+                        <% }else{ %>
+                        <li class=<% if(ative=="/") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/">首页</a></li>
+                        <li class=<% if(ative=="userList") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/u/userList">用户列表</a></li>
+                        <li class=<% if(ative=="yunpanFx") {%> "nav-current" <%}else{ %> "" <% } %> role="presentation"><a href="/u/shareResources">分享资源</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

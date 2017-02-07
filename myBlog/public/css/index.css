@@ -1,0 +1,23 @@
+main article.post {
+    padding-bottom: 0;
+}
+article.post .post-footer {
+    padding: 0;
+}
+.tag-list {
+    padding: 10px 0;
+}
+.input-group-addon {
+    cursor: pointer;
+}
+.username {
+    color: #ffbc00;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.list-group-item {
+    cursor: pointer;
+}
+.post-content p img {
+    max-height: 300px;
+}

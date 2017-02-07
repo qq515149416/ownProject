@@ -1,0 +1,90 @@
+<aside class="col-md-4 sidebar">
+    <!-- start widget -->
+    <!-- end widget -->
+
+    <!-- start tag cloud widget -->
+    <div class="widget">
+        <h4 class="title">用户信息</h4>
+        <div class="content community">
+            <p>用户名：<%= username %></p>
+            <p>昵称:<%= nickname %></p>
+            <p>个人说明:<%= description %></p>
+            <% if(login) { %>
+            <p>可用空间:<%= (availableSpace/1000/1000).toFixed(2) %>M</p>
+            <a href="/u/exit">退出登录</a>
+            <% } %>
+        </div>
+    </div>
+    <!-- end tag cloud widget -->
+
+    <!-- start widget -->
+    <div class="widget">
+        <h4 class="title">我要发帖</h4>
+        <div class="content download">
+            <a href="javascript:;" class="btn btn-default btn-block" data-toggle="modal" data-target="#fatie">我要发帖</a>
+        </div>
+    </div>
+    <!-- end widget -->
+    <div class="modal fade bs-example-modal-lg" id="fatie" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">发帖</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputTitle1" placeholder="标题">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputTag" placeholder="标签">
+                    </div>
+                    <textarea id="fateTextarea" cols="120" rows="10"></textarea>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tupanSelect" id="tupan">图片</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="send">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="tupanSelect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">请选择你要发表的图片</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3">
+                            <a href="#" class="thumbnail">
+                                <img src="/images/timg.jpg" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="selectImg">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- start tag cloud widget -->
+    <div class="widget">
+        <h4 class="title">好友列表</h4>
+        <div class="content tag-cloud">
+            <ul class="list-group">
+            </ul>
+        </div>
+    </div>
+    <!-- end tag cloud widget -->
+
+    <!-- start widget -->
+    <!-- end widget -->
+
+    <!-- start widget -->
+    <!-- end widget -->                </aside>

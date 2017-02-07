@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>羁绊者</title>
+    <meta name="description" content="这个是一个带有云盘功能的论坛" />
+    <meta name="keywords" content="云盘,blog,博客,论坛">
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/jquery.Jcrop.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.5/styles/monokai_sublime.min.css">
+    <link href="//cdn.bootcss.com/magnific-popup.js/1.0.0/magnific-popup.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/dist/css/screen.css" />
+    <script type="text/javascript" src="/dist/js/ghost-url.min.js"></script>
+    <script type="text/javascript">
+        ghost.init({
+            clientId: "ghost-frontend",
+            clientSecret: "721352203d6a"
+        });
+    </script>
+    <meta name="generator" content="Blog 0.7" />
+    <link rel="stylesheet" type="text/css" href="/css/com.css" />
+    <style type="text/css">
+        .caption h3 {
+            font-size: 16px;
+            text-align: center;
+            overflow: hidden;
+            margin: 5px 0;
+            height: 34px;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .thumbnail {
+            position: relative;
+            padding-top: 14px;
+        }
+        .glyphicon-remove {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="home-template">
+<%- include('header') -%>
+<!-- start site's main content area -->
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+
+            <main class="col-md-6 main-content">
+                <div class="row">
+                    <% for(var i=0;i<files.length;i++) { %>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <span class="glyphicon glyphicon-remove" data-filename="<%= files[i].filename %>"></span>
+                            <% if(files[i].filename.substr(files[i].filename.lastIndexOf("."))==".jpg"||files[i].filename.substr(files[i].filename.lastIndexOf("."))==".png"||files[i].filename.substr(files[i].filename.lastIndexOf("."))==".gif") { %>
+                                <img src="/images/u<%= files[i].filename %>" alt="...">
+                            <% } else { %>
+                                <img src="/images/download.png" alt="...">
+                            <% } %>
+                            <div class="caption">
+                                <h3 title="<%= files[i].filename %>"><%= files[i].filename %></h3>
+                                <p>
+                                    <a href="/u/cloudDisk/download?filename=<%= files[i].filename %>" class="btn btn-primary" role="button">下载</a>
+                                    <% if(files[i].share){ %>
+                                        <a href="#" class="btn btn-warning share" data-file="<%= files[i].filename %>" disabled="disabled" role="button">已分享</a>
+                                    <% } else {%>
+                                        <a href="#" class="btn btn-warning share" data-file="<%= files[i].filename %>" role="button">分享</a>
+                                    <% } %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </main>
+
+            <aside class="col-md-4 sidebar">
+                <!-- start widget -->
+                <!-- end widget -->
+
+                <!-- start tag cloud widget -->
+                <div class="widget">
+                    <h4 class="title">用户信息</h4>
+                    <div class="content community">
+                        <p>用户名：<%= username %></p>
+                        <p>昵称:<%= nickname %></p>
+                        <p>个人说明:<%= description %></p>
+                        <% if(login) { %>
+                        <p>可用空间:<%= (availableSpace/1000/1000).toFixed(2) %>M</p>
+                        <a href="/u/exit">退出登录</a>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- end tag cloud widget -->
+
+                <!-- start widget -->
+                <div class="widget">
+                    <h4 class="title">我要上传</h4>
+                    <div class="content download">
+                        <a href="javascript:;" class="btn btn-default btn-block" data-toggle="modal" data-target="#fatie">我要上传</a>
+                    </div>
+                </div>
+                <!-- end widget -->
+                <div class="modal fade bs-example-modal-lg" id="fatie" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">上传</h4>
+                            </div>
+                            <form action="/doUpload" method="post" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input type="file" name="file" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="submit" class="btn btn-primary" id="send">上传</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- start tag cloud widget -->
+                <div class="widget">
+                    <h4 class="title">好友列表</h4>
+                    <div class="content tag-cloud">
+                        <ul class="list-group">
+                        </ul>
+                    </div>
+                </div>
+                <!-- end tag cloud widget -->
+
+                <!-- start widget -->
+                <!-- end widget -->
+
+                <!-- start widget -->
+                <!-- end widget -->                </aside>
+
+        </div>
+    </div>
+</section>
+<%- include('footer') -%>
+<script type="text/template" id="friends">
+    {{ for(var i=0;i<items.length;i++) { }}
+    <li class="list-group-item" title="{{= items[i].username }}" data-username="{{= items[i].username }}"><img src="/images/{{= items[i].headIcon }}" height="30px"/>&nbsp;&nbsp;{{= items[i].nickname }}</li>
+    {{ } }}
+</script>
+<script type="text/template" id="template">
+    <div class="comment"><span class="username">{{= username}}:</span>{{= content}}</div>
+</script>
+<script id="template_date" type="text/html">
+    {{= dateFormat(time, 'yyyy年MM月dd日 hh:mm:ss') }}
+</script>
+<script>
+    $(function(){
+        $('.post-content img').each(function(item){
+            var src = $(this).attr('src');
+
+            $(this).wrap('<a href="' + src + '" class="mfp-zoom" style="display:block;"></a>');
+        });
+
+        /*$('.post-content').magnificPopup({
+         delegate: 'a',
+         type: 'image'
+         });*/
+    });
+</script>
+<script src="/js/com.js"></script>
+<script>
+    $(function(){
+        header();
+        $(".date").html(template("template_date",{time:$(".date").attr("data-time")}));
+        $(".post-date").html(template("template_date",{time:$(".post-date").attr("title")}));
+        $(".glyphicon-remove").click(function() {
+            $.get("/u/deleteFile?filename="+$(this).attr("data-filename"),function(result) {
+                if(result=="1") {
+                    location.href="/u/cloudDisk";
+                }
+            });
+        });
+        var iUsername=$(".community p").eq(0).html().split("：")[1];
+        var friendsArr=[];
+        $.get("/u/userInfo?username="+iUsername,function(iResult) {
+            for(var i=0;i<iResult.friends.length;i++) {
+                $.get("/u/userInfo?username="+iResult.friends[i],function(result) {
+                    friendsArr.push(result);
+                    if(iResult.friends.length==friendsArr.length) {
+                        $(".tag-cloud").children("ul").html(template("friends",{items: friendsArr}));
+                    }
+                });
+            }
+        });
+        $(".list-group").on("click","li",function() {
+            console.log($(this).attr("data-username"));
+            location.href="/"+$(this).attr("data-username");
+        });
+        $(".share").click(function() {
+            var self=this;
+            if(!$(this).attr("disabled")){
+                $.get("/u/cloudDisk/share?shareFile="+$(this).attr("data-file"),{},function(result) {
+                    console.log(result);
+                    if(result=="1") {
+                        $(self).attr("disabled","disabled");
+                        $(self).html("已分享");
+                    }
+                })
+            }else{
+                $.get("/u/cloudDisk/unshare?unshare="+$(this).attr("data-file"),{},function(result) {
+                    if(result=="1") {
+                        $(self).removeAttr("disabled");
+                        $(self).html("分享");
+                    }
+                });
+            }
+        });
+        $(".input-group-addon").click(function() {
+            var self=this;
+            var id=$(this).attr("id").split("_")[1];
+            var content=$(this).prev().val();
+            if(content.trim()=="") {
+                alert("内容不能为空");
+                return ;
+            }
+            $.post("/doComment",{"id":id,"content":content},function(result) {
+                if(result.code=="1") {
+                    $(self).parent().parent().prepend(template("template",result.object));
+                    $(self).prev().val("");
+                }
+            })
+        });
+    });
+</script>
+
+</body>
+</html>

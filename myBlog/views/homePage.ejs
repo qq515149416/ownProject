@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>羁绊者</title>
+    <meta name="description" content="Ghost 是一套基于 Node.js 构建的开源博客平台（Open source blogging platform），具有易用的书写界面和体验，博客内容默认采用 Markdown 语法书写，目标是取代臃肿的 Wordpress。" />
+    <meta name="keywords" content="Ghost,blog,Ghost中国,Ghost博客,Ghost中文,Ghost中文文档">
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/jquery.Jcrop.css" type="text/css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.5/styles/monokai_sublime.min.css">
+    <link href="//cdn.bootcss.com/magnific-popup.js/1.0.0/magnific-popup.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/dist/css/screen.css" />
+
+    <link rel="canonical" href="http://www.ghostchina.com/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="http://www.ghostchina.com/page/2/" />
+    <script type="text/javascript" src="/dist/js/ghost-url.min.js"></script>
+    <script type="text/javascript">
+        ghost.init({
+            clientId: "ghost-frontend",
+            clientSecret: "721352203d6a"
+        });
+    </script>
+    <meta name="generator" content="Ghost 0.7" />
+    <link rel="alternate" type="application/rss+xml" title="Ghost 开源博客平台" href="http://www.ghostchina.com/rss/" />
+    <link rel="stylesheet" type="text/css" href="/css/com.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+</head>
+<body class="home-template">
+<%- include('header') -%>
+<!-- start site's main content area -->
+<section class="content-wrap">
+<div class="container">
+<div class="row">
+
+<main class="col-md-8 main-content">
+<% for(var i=0;i<content.length;i++) { %>
+<article id="<%= content[i]._id %>" class="post">
+    <div class="post-head">
+        <h1 class="post-title"><a href="/<%= content[i].username %>?title=<%= content[i].title %>"><%= content[i].title %></a></h1>
+        <div class="post-meta">
+            <span class="author">作者：<a href="/<%= content[i].username %>"><%= content[i].nickname %></a></span> &bull;
+            <time class="post-date" datetime="<%= content[i].date %>" title="<%= content[i].date %>">加载中...</time>
+        </div>
+    </div>
+    <div class="post-content">
+        <p><%- content[i].content %></p>
+    </div>
+    <!--<div class="post-permalink">-->
+        <!--<a href="/moving-to-node-js-v4-lts/" class="btn btn-default">阅读全文</a>-->
+    <!--</div>-->
+
+    <footer class="post-footer clearfix">
+        <div class="tag-list">
+            <% for(var j=0;j<content[i].comment.length;j++) { %>
+                <div class="comment"><span class="username"><%= content[i].comment[j].username %>:</span><%= content[i].comment[j].content%></div>
+            <% } %>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="评论内容" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="comment_<%= content[i]._id %>">发送</span>
+            </div>
+        </div>
+        <div class="pull-right share">
+        </div>
+    </footer>
+</article>
+<% } %>
+
+<!--<nav class="pagination" role="navigation">-->
+    <!--<span class="page-number">第 1 页 &frasl; 共 8 页</span>-->
+    <!--<a class="older-posts" href="/page/2/"><i class="fa fa-angle-right"></i></a>-->
+<!--</nav>-->
+
+
+</main>
+
+    <aside class="col-md-4 sidebar">
+        <!-- start widget -->
+        <!-- end widget -->
+
+        <!-- start tag cloud widget -->
+        <div class="widget">
+            <h4 class="title">用户信息</h4>
+            <div class="content community">
+                <p>用户名：<%= username %></p>
+                <p>昵称:<%= nickname %></p>
+                <p>个人说明:<%= description %></p>
+                <% if(login) { %>
+                <p>可用空间:<%= (availableSpace/1000/1000).toFixed(2) %>M</p>
+                <a href="/u/exit">退出登录</a>
+                <% } %>
+            </div>
+        </div>
+        <!-- end tag cloud widget -->
+
+        <!-- start widget -->
+        <div class="widget">
+            <h4 class="title">我要留言</h4>
+            <div class="content download">
+                <a href="javascript:;" class="btn btn-default btn-block" data-toggle="modal" data-target="#fatie">我要留言</a>
+            </div>
+        </div>
+        <!-- end widget -->
+        <div class="modal fade bs-example-modal-lg" id="fatie" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">留言</h4>
+                    </div>
+                    <div class="modal-body">
+                        <textarea id="fateTextarea" cols="120" rows="10"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="send">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- start tag cloud widget -->
+        <!-- end tag cloud widget -->
+
+        <!-- start widget -->
+        <!-- end widget -->
+
+        <!-- start widget -->
+        <!-- end widget -->                </aside>
+
+</div>
+</div>
+</section>
+<%- include('footer') -%>
+<script type="text/template" id="template">
+    <div class="comment"><span class="username">{{= username}}:</span>{{= content}}</div>
+</script>
+<script id="template_date" type="text/html">
+    {{= dateFormat(time, 'yyyy年MM月dd日 hh:mm:ss') }}
+</script>
+<script>
+    $(function(){
+        $('.post-content img').each(function(item){
+            var src = $(this).attr('src');
+
+            $(this).wrap('<a href="' + src + '" class="mfp-zoom" style="display:block;"></a>');
+        });
+
+        /*$('.post-content').magnificPopup({
+         delegate: 'a',
+         type: 'image'
+         });*/
+    });
+</script>
+<script src="/js/com.js"></script>
+<script>
+    $(function(){
+        header();
+        $(".date").html(template("template_date",{time:$(".date").attr("data-time")}));
+        $(".post-date").html(template("template_date",{time:$(".post-date").attr("title")}));
+        $(".input-group-addon").click(function() {
+            var self=this;
+            var id=$(this).attr("id").split("_")[1];
+            var content=$(this).prev().val();
+            if(content.trim()=="") {
+                alert("内容不能为空");
+                return ;
+            }
+            $.post("/doComment",{"id":id,"content":content},function(result) {
+                if(result.code=="1") {
+                    $(self).parent().parent().prepend(template("template",result.object));
+                    $(self).prev().val("");
+                }
+            })
+        });
+        $("#send").click(function() {
+            var self=this;
+            var content=$("#fateTextarea").val();
+            var recipient=$(".community p").eq(0).html().split("：")[1];
+            $.post("/doLamessage",{"content":content,"recipient":recipient},function(result) {
+                if(result=="1") {
+                    $(self).prev().trigger("click");
+                    $("#fateTextarea").val("");
+                    //location.href="/";
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

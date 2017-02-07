@@ -1,0 +1,100 @@
+.customize {
+    display: block;
+}
+.customize + textarea {
+    resize: none;
+}
+.branding {
+    position: relative;
+}
+.branding .mask {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    transition: all .5s;
+    background-color: rgba(0,0,0,0);
+    top: -19px;
+    left: 0;
+    color: rgba(255,255,255,0);
+    font-size: 16px;
+    line-height: 100px;
+}
+.branding .mask:hover {
+    background-color: rgba(0,0,0,.5);
+    color: rgba(255,255,255,1);
+}
+.jcrop-holder #preview-pane {
+    display: block;
+    position: absolute;
+    z-index: 2000;
+    top: 10px;
+    right: -200px;
+    padding: 6px;
+    border: 1px rgba(0,0,0,.4) solid;
+    background-color: white;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+.jcrop-holder {
+    display: none;
+}
+/* The Javascript code will set the aspect ratio of the crop
+   area based on the size of the thumbnail preview,
+   specified here */
+#preview-pane .preview-container {
+    width: 250px;
+    height: 170px;
+    overflow: hidden;
+}
+#fateTextarea {
+    width: 100%;
+    resize: none;
+}
+.yidong {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #bbb;
+    z-index: 99;
+    text-align: center;
+    line-height: 50px;
+    transition: all .5s;
+}
+.yidong:hover {
+    background-color: #e67e22;
+}
+.yidong span {
+    font-size: 20px;
+}
+.yidong span:hover {
+    color: #fff;
+}
+.navItem {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #bbb;
+    transition: all .5s;
+    margin-top: -1px;
+}
+.navItem:hover {
+    background-color: #e67e22;
+    color: #fff;
+}
+.userInfo {
+    bottom: 70px;
+}
+.userInfo:hover {
+    background-color: transparent;
+}
+.userInfo span:hover {
+    color: rgb(80, 80, 80);
+}
