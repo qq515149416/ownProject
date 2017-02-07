@@ -1,0 +1,9 @@
+{
+	"images":[
+		{"name":"butterfly","image":"images/butterfly.png"},
+		{"name":"dog","image":"images/dog.png"},
+		{"name":"rabbit","image":"images/rabbit.png"},
+		{"name":"tiger","image":"images/tiger.png"},
+		{"name":"pig","image":"images/pig.png"}
+	]
+}

@@ -1,0 +1,90 @@
+/*reset CSS*/
+*,
+::before,
+::after {
+	margin: 0;
+	padding: 0;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
+body {
+    font-size:14px;
+    color:#333;
+    font-family:"MicroSoft YaHei","sans-serif";
+    background-color:#f5f5f5;
+}
+a {
+    text-decoration:none;
+    color:#333;
+}
+a:hover {
+    color:#333;
+}
+ul,ol {
+    list-style:none;
+}
+input,textarea {
+    border:none;
+    outline:none;
+    resize:none;
+    -webkit-appearance:none;
+}
+/*common CSS*/
+.m_fl {
+    float:left;
+}
+.m_fr {
+    float:right;
+}
+.clearfix::before,
+.clearfix::after {
+    content:"";
+    display:table;
+}
+.clearfix::after {
+    clear:both;
+}
+.clearfix {
+    *zoom:1;
+}
+.jd-topBar {
+    width:100%;
+    height:45px;
+    border-bottom: 1px solid #ccc;
+    background:url(../images/header-bg.png) repeat-x;
+    background-size: 1px 44px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.jd-topBar [class^="icon-"] {
+    width: 40px;
+    height: 44px;
+    background:url(../images/sprites.png) no-repeat;
+    background-size: 200px 200px;
+    position:absolute;
+    top: 0;
+    padding: 12px 10px;
+    background-origin: content-box;
+    background-clip: content-box;
+}
+.jd-topBar .icon-back {
+    left: 0;
+    background-position: -20px 0;
+}
+.jd-topBar .icon-menu {
+    right: 0;
+    background-position: -60px 0;
+}
+.jd-topBar form {
+    width: 100%;
+    padding: 0 40px;
+}
+.jd-topBar form input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    margin-top: 7px;
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<title>BirdGame</title>
+		<style>
+			*{
+				margin:0px;
+				padding:0px;
+			}
+			#canvas{
+				border:1px solid #000;
+				margin:auto;
+				display:block;
+				background-color:#00ccff;
+			}
+		</style>
+		<script src="js/simpleInheritance.js"></script>
+		<script src="js/underscore.js"></script>
+		<script src="js/game.js"></script>
+		<script src="js/frameUlit.js"></script>
+		<script src="js/loadimageUtil.js"></script>
+		<script src="js/resource.js"></script>
+		<script src="js/background.js"></script>
+		<script src="js/bird.js"></script>
+		<script src="js/pipe.js"></script>
+		<script src="js/scoring.js"></script>
+		<script>
+			window.onload=function(){
+				game=new Game({
+					"fps":50,
+					"id":"canvas"
+				});
+				//game.stop();
+				game.canvas.width=document.documentElement.clientWidth;
+				game.canvas.height=document.documentElement.clientHeight;
+
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas" width="1200" height="800"></canvas>
+	</body>
+</html>

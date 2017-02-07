@@ -1,0 +1,142 @@
+.banner {
+    position:relative;
+}
+.banner a {
+    position:absolute;
+    width:100%;
+    height:630px;
+    background:url(../images/bg.jpg) no-repeat center top;
+    top:0;
+    left:0;
+}
+.main {
+    position:relative;
+    z-index:1;
+}
+.main .lbt {
+    padding:12px 0 0 220px;
+    position:relative;
+}
+.main .lbt ul {
+    position:absolute;
+    bottom:8px;
+    left:50%;
+    margin-left:-66px;
+}
+.main .lbt li {
+    float:left;
+    width:18px;
+    height:18px;
+    background-color:#3E3E3E;
+    text-align:center;
+    line-height:18px;
+    color:#fff;
+    border-radius:50%;
+    margin:0 2px;
+}
+.main .lbt li.current {
+    background-color:#B61B1F;
+}
+.main .direction a {
+    position:absolute;
+    top:50%;
+    width:28px;
+    height:62px;
+    background:rgba(0,0,0,.3);
+    text-align:center;
+    font:20px/62px "SimSun";
+    color:#fff;
+    margin-top:-31px;
+}
+.main .direction a:hover {
+    background:rgba(0,0,0,.5);
+}
+.main .direction a.left {
+    left:220px;
+}
+.main .direction a.right {
+    right:0;
+}
+.main .news {
+    width:248px;
+    height:372px;
+    border:1px solid #E4E4E4;
+    margin-top:12px;
+    overflow:hidden;
+}
+.main .jd-news .dt {
+    line-height:32px;
+    border-bottom:1px dotted #E8E8E7;
+    padding:0 16px 0 15px;
+}
+.jd-news .dt h3 {
+    float:left;
+    font:16px/32px "microsoft yahei";
+}
+.jd-news .dt a {
+    float:right;
+    font:12px/32px "SimSun";
+}
+.jd-news .dd {
+    border-bottom:1px solid #E4E4E4;
+}
+.jd-news .dd ul {
+    padding:5px 0 5px 15px;
+}
+.jd-news .dd li {
+    font:12px/24px "microsoft yahei";
+    float:none;
+    padding:0;
+}
+.jd-news .dd span {
+    font-weight:700;
+    margin-right:6px;
+}
+.lifeservi ul {
+    width:256px;
+}
+.lifeservi li {
+    width:62px;
+    height:25px;
+    border:1px solid #E4E4E4;
+    padding:45px 0 0 0;
+    margin:-1px 0 0 -1px;
+    text-align:center;
+    position:relative;
+}
+.lifeservi li i {
+    position:absolute;
+    width:26px;
+    height:27px;
+    background:url(../images/icon.png) no-repeat -24px 0;
+    top:15px;
+    left:18px;
+}
+.main .ad {
+    width:248px;
+    height:75px;
+    margin-top:5px;
+    margin-right:2px;
+}
+.m {
+    width:1210px;
+    height:151px;
+    margin-top:10px;
+    background-color:#fff;
+    box-shadow: 1px 1px 5px 1px #000 inset;
+    position: relative;
+}
+.m p {
+    text-align: center;
+    line-height: 151px;
+    font-weight: 700;
+    font-size: 30px;
+}
+.m .error {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 10px;
+    top: 10px;
+    background: url("../images/error.png");
+}

@@ -1,0 +1,201 @@
+body {
+    min-width: 300px;
+}
+.jd-topBar {
+    position: static;
+}
+.jd-topBar h3 {
+    font-weight:normal;
+    text-align:center;
+    line-height: 45px;
+}
+.jd-tip {
+    height: 34px;
+    line-height: 34px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align:center;
+}
+.jd-tip p {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    color: #666;
+    font-size: 12px;
+}
+.jd-tip p::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width:18px;
+    height:18px;
+    background:url(../images/safe_icon.png) no-repeat;
+    background-size: 18px 18px;
+}
+.jd-stop {
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+}
+.jd-stop .tit {
+    height: 34px;
+    line-height: 34px;
+    position: relative;
+}
+.jd-stop .left {
+    position: absolute;
+}
+.jd-stop .check-box {
+    display: block;
+    width: 40px;
+    height: 34px;
+    padding: 7px 10px;
+    background: url(../images/shop-icon.png) no-repeat;
+    background-size: 50px 100px;
+    background-origin: content-box;
+    background-clip: content-box;
+}
+.jd-stop .right {
+    padding-left: 40px;
+}
+.jd-stop .tit .right img {
+    width: 15px;
+    height: 13px;
+    float: left;
+    margin-top: 10px;
+}
+.jd-stop .tit .right .name {
+    margin-left: 10px;
+    float: left;
+}
+.jd-stop .tit .right .tip {
+    float: right;
+    padding-right: 10px;
+    color: #d8505c;
+    font-size: 12px;
+}
+.jd-stop .product {
+    height: 100px;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+}
+.jd-stop .product img {
+    width: 80px;
+    height: 80px;
+    float:left;
+}
+.jd-stop .product .info {
+    overflow: hidden;
+    padding-left: 10px;
+}
+.jd-stop .product .info .name {
+    height: 35px;
+    overflow: hidden;
+}
+.jd-stop .product .info .control span,input {
+    width: 32px;
+    height: 24px;
+    float: left;
+    text-align: center;
+}
+.jd-stop .product .info .control span {
+    border: 1px solid #ccc;
+}
+.jd-stop .product .info .control input {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.jd-stop .product .info .control span:first-of-type {
+    border-radius: 3px 0 0 3px;
+}
+.jd-stop .product .info .control span:last-of-type {
+    border-radius: 0 3px 3px 0;
+}
+.jd-stop .product .info .garbage {
+    padding-right: 10px;
+}
+.jd-stop .product .info .garbage span {
+    display: block;
+}
+.jd-stop .product .info .garbage span.up {
+    width:  20px;
+    height: 5px;
+    background: url(../images/delete_up.png) no-repeat;
+    background-size: 20px 5px;
+    margin-top: 1px;
+    margin-left: -1px;
+}
+.jd-stop .product .info .garbage span.down {
+    width:  18px;
+    height: 18px;
+    background: url(../images/delete_down.png) no-repeat;
+    background-size: 18px 18px;
+    margin-top: -2px;
+}
+.jd-stop .product .info .price {
+    color: #d8505c;
+}
+.jd-stop .check-box[checked] {
+    background-position: -25px 0;
+}
+.deleteTipBox {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: none;
+}
+.deleteTipBox .warnBox {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 200px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.deleteTipBox .warnBox p.text {
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    border-bottom: 1px solid #ccc;
+    text-align:center;
+    font-size: 18px;
+}
+.deleteTipBox .warnBox a {
+    width: 45%;
+    height: 36px;
+    line-height: 36px;
+    text-align:center;
+    float:left;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.deleteTipBox .warnBox a.cancel {
+    border: 1px solid #ccc;
+    margin-right: 10%;
+}
+.deleteTipBox .warnBox a.submit {
+    background-color: #d8505c;
+    color: #fff;
+}
+.bounceInDown {
+    animation: bounceInDown 1s;
+    -webkit-animation: bounceInDown 1s;
+}
+@keyframes bounceInDown {
+    0% {transform:translateY(-3000px);-webkit-transform:translateY(-3000px);}
+    60%{transform:translateY(25px);-webkit-transform:translateY(25px);}
+    75%{transform:translateY(-10px);-webkit-transform:translateY(-10px);}
+    90%{transform:translateY(5px);-webkit-transform:translateY(5px);}
+    100%{transform:none;-webkit-transform:none;}
+}
+@-webkit-keyframes bounceInDown {
+    0% {transform:translateY(-3000px);webkitTransform:translateY(-3000px);}
+    60%{transform:translateY(25px);webkitTransform:translateY(25px);}
+    75%{transform:translateY(-10px);webkitTransform:translateY(-10px);}
+    90%{transform:translateY(5px);webkitTransform:translateY(5px);}
+    100%{transform:none;webkitTransform:none;}
+}

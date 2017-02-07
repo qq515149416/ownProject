@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width;initial-scale=1.0">
+        <title>俄罗斯方块</title>
+        <style type="text/css">
+			#canvas{
+				border:1px solid #000;
+				display:block;
+				margin:0px auto;
+			}
+        </style>
+        <script type="text/javascript" src="js/simpleInheritance.js"></script>
+        <script type="text/javascript" src="js/Game.js"></script>
+        <script type="text/javascript" src="js/Map.js"></script>
+        <script type="text/javascript" src="js/CellBlockManage.js"></script>
+        <script type="text/javascript" src="js/CellBlock.js"></script>
+        <script type="text/javascript" src="js/IframeFps.js"></script>
+        <script type="text/javascript" src="js/Score.js"></script>
+        <script type="text/javascript" src="js/equipmentMatch.js"></script>
+        <script type="text/javascript" src="js/MobilePhoneUI.js"></script>
+        <script type="text/javascript">
+        window.onload=function(){
+        	window.game=new Game();
+        	game.run();//让程序开始执行
+        }
+        </script>
+    </head>
+    <body>
+    	<canvas id="canvas" width="700" height="910"></canvas>
+    </body>
+</html>
